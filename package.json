@@ -6,6 +6,8 @@
     "name": "Johannes Neumeier",
     "email": "hello@johannesneumeier.com"
   },
+  "repository": "",
+  "description": "Simple opinionated boilerplate for php/Silex projects with Angular frontend",
   "engines": {
     "node": ">= 0.10.0"
   },
