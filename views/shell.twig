@@ -27,7 +27,7 @@
 
     <!-- TODO Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.min.css">
 
     <base href="/"/>
 </head>
@@ -36,5 +36,8 @@
 {% block content %}
 {% endblock %}
 
+<!-- TODO switch to minified versions on production -->
+<script src="/assets/js/lib.js"></script>
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

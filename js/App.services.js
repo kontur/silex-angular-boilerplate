@@ -34,7 +34,7 @@ angular.module('App.services', ['ngResource'])
                 return meta.keywords;
             },
             image: function () {
-                return meta.image
+                return meta.image;
             },
 
             set: function (newMeta) {
@@ -43,7 +43,6 @@ angular.module('App.services', ['ngResource'])
                 }
             },
             prepend: function (newMeta) {
-                ;
                 $.map(defaults, function (value, index) {
                     if (newMeta.hasOwnProperty(index)) {
                         meta[index] = newMeta[index] + " " + value;

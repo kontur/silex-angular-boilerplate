@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 
             app: {
                 src: ['app/*.js'],
-                dest: 'www/assets/app.js'
+                dest: 'www/assets/js/app.js'
             },
 
             // concat all libraries into on file that changes not so often
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                     'bower_components/angular-route/angular-route.js',
                     'bower_components/angular-animate/angular-animate.js'
                 ],
-                dest: 'www/assets/lib.js'
+                dest: 'www/assets/js/lib.js'
             }
         },
 
@@ -40,11 +40,11 @@ module.exports = function (grunt) {
                     banner: '<%= banner %>'
                 },
                 src: '<%= concat.app.dest %>',
-                dest: 'www/assets/app.min.js'
+                dest: 'www/assets/js/app.min.js'
             },
             lib: {
                 src: '<%= concat.lib.dest %>',
-                dest: 'www/assets/lib.min.js'
+                dest: 'www/assets/js/lib.min.js'
             }
         },
 
@@ -58,13 +58,14 @@ module.exports = function (grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
-                unused: true,
+                unused: false, // might want to switch to true
                 boss: true,
                 eqnull: true,
                 browser: true,
                 globals: {
                     jQuery: true,
-                    $: true
+                    $: true,
+                    angular: true
                 }
             },
             gruntfile: {
@@ -75,15 +76,58 @@ module.exports = function (grunt) {
             }
         },
 
+        less: {
+            dev: {
+                files: {
+                    "www/assets/css/main.css": [
+                        "less/main.less"
+                    ]
+                }
+            },
+            prod: {
+                options: {
+                    compress: true,
+                    cleancss: true,
+                    optimization: 3
+                },
+                files: {
+                    "www/assets/css/main.min.css": [
+                        "less/main.less"
+                    ]
+                }
+            }
+        },
+
+        todo: {
+            options: {
+                file: "TODO.md",
+                githubBoxes: true,
+                colophon: true,
+                usePackage: true
+            },
+            src: ['src/*', 'less/*', 'js/*', 'www/*.php', 'www/partials/*']
+        },
+
         watch: {
             gruntfile: {
                 files: '<%= jshint.gruntfile.src %>',
                 tasks: ['jshint:gruntfile']
             },
-
+            lib: {
+                files: 'bower_components/bower/*',
+                tasks: ["concat:lib", "uglify:lib"]
+            },
+            less: {
+                files: 'less/*.less',
+                tasks: ["less"]
+            },
             app: {
                 files: 'js/*.js',
                 tasks: ['jshint:app', 'concat:app', 'uglify:app']
+            },
+            todo: {
+                files: '<%= todo.src %>',
+                tasks: ['todo']
             }
         }
     });
@@ -94,9 +138,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-todo');
 
     // Default task.
-    grunt.registerTask('default', ['less', 'jshint', 'concat', 'uglify']);
+    grunt.registerTask('default', ['less', 'jshint', 'concat', 'uglify', 'todo']);
     grunt.registerTask('lib', ['concat:lib', 'uglify:lib']);
 
 };
