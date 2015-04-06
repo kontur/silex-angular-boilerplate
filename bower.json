@@ -1,0 +1,23 @@
+{
+  "name": "silex-angular-boilerplate",
+  "version": "0.0.0",
+  "authors": [
+    "Johannes Neumeier <hello@johannesneumeier.com>"
+  ],
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "grunt-contrib-less": "~1.0.0",
+    "angular-animate": "~1.3.15",
+    "angular-route": "~1.3.15"
+  }
+}
