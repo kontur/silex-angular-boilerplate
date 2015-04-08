@@ -9,7 +9,7 @@ class Index implements Silex\ControllerProviderInterface
 
     public function connect(Silex\Application $app)
     {
-        $controllers = $app['controller_factory'];
+        $controllers = $app['controllers_factory'];
 
         //$controllers->get
 

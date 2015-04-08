@@ -10,13 +10,18 @@
     ],
     "require": {
         "silex/silex": "~1.2",
-        "symfony/twig-bridge": "~2.6",
         "doctrine/dbal": "~2.5",
-        "jasongrimes/silex-simpleuser": "~2.0"
+        "jasongrimes/silex-simpleuser": "~2.0",
+        "symfony/translation": "~2.6",
+        "symfony/form": "~2.6",
+        "symfony/security-csrf": "~2.6",
+        "symfony/twig-bridge": "~2.6",
+        "symfony/translation": "~2.6",
+        "symfony/validator": "~2.6"
     },
     "autoload": {
         "psr-4": {
-            "johannesneumeier\\SilexAngularBoilerplate\\": "src/johannesneumeier/Boilerplate/"
+            "johannesneumeier\\SilexAngularBoilerplate\\": "src/johannesneumeier/SilexAngularBoilerplate/"
         }
     }
 }
