@@ -11,11 +11,11 @@ angular.module('App', [
     'App.directives'])
 
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/index', {
+        $routeProvider.when('/', {
             templateUrl: 'partials/index.html',
             controller: 'IndexController'
         });
-        $routeProvider.otherwise({redirectTo: '/index'});
+        $routeProvider.otherwise({redirectTo: '/'});
 
         $locationProvider.html5Mode({enabled: true, rewriteLinks: true});
     }])

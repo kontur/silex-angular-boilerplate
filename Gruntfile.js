@@ -18,16 +18,21 @@ module.exports = function (grunt) {
             },
 
             app: {
-                src: ['app/*.js'],
+                src: ['js/*.js'],
                 dest: 'www/assets/js/app.js'
             },
 
             // concat all libraries into on file that changes not so often
             // manually select the js files to concat
             lib: {
+                // src order matters, requireJS in use atm :)
                 src: [
+                    // eventually decouple jquery?
+                    'bower_components/jquery/dist/jquery.js',
+
                     'bower_components/angular/angular.js',
                     'bower_components/angular-route/angular-route.js',
+                    'bower_components/angular-resource/angular-resource.js',
                     'bower_components/angular-animate/angular-animate.js'
                 ],
                 dest: 'www/assets/js/lib.js'
