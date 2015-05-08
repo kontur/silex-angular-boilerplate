@@ -88,7 +88,8 @@ module.exports = function (grunt) {
                         "less/main.less"
                     ]
                 }
-            },
+            }
+            /*,
             prod: {
                 options: {
                     compress: true,
@@ -100,6 +101,29 @@ module.exports = function (grunt) {
                         "less/main.less"
                     ]
                 }
+            }
+            */
+        },
+
+        autoprefixer: {
+            options: {
+            },
+            main: {
+                options: {},
+                src: 'www/assets/css/main.css',
+                dest: 'www/assets/css/main.css'
+            }
+        },
+
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'www/assets/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'www/assets/css',
+                    ext: '.min.css'
+                }]
             }
         },
 
@@ -124,7 +148,7 @@ module.exports = function (grunt) {
             },
             less: {
                 files: 'less/*.less',
-                tasks: ["less"]
+                tasks: ["less", "autoprefixer", "cssmin"]
             },
             app: {
                 files: 'js/*.js',
@@ -144,6 +168,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-todo');
+    grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // Default task.
     grunt.registerTask('default', ['less', 'jshint', 'concat', 'uglify', 'todo']);
